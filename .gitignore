@@ -1,0 +1,13 @@
+# Python junk (compiled code)
+__pycache__/
+*.py[cod]
+
+# Environment variables (private secrets/API keys)
+.env
+
+# Folders created by VS Code settings
+.vscode/
+
+# Hidden system files (Mac/Windows junk)
+.DS_Store
+Thumbs.db
