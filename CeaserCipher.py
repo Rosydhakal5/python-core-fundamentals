@@ -7,9 +7,6 @@
 # This replaces the need for separate encode/decode functions (DRY principle).
 
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-direction = input("Would you like to encode or decode a message? :\n").lower()
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
 
 def ceaser(new_text, shift_position, selected_direction):
     # The "Toggle": If user chooses decode, we flip the shift to negative
@@ -26,12 +23,28 @@ def ceaser(new_text, shift_position, selected_direction):
         else:
             # Keeps spaces, numbers, or symbols as they are
             cipher_text += letter
-    print(f"Your Cipher Code is {cipher_text}")
+    print(f"Your Cipher Code is {cipher_text}\n")
 
-ceaser(new_text=text, shift_position=shift, selected_direction = direction)
+# --- Application Entry Point ---
+should_continue = True
 
+while should_continue:
+    # Gather user requirements
+    direction = input("Would you like to encode or decode a message? :\n").lower()
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
 
-
+    # Execute the core logic
+    ceaser(new_text=text, shift_position=shift, selected_direction=direction)
+    
+    # Control flow for repeating the program
+    restart = input("Would you like to continue? Y or N? \n: ").lower()
+    if restart == "y":
+        should_continue = True
+    else:
+        should_continue = False
+        print("We Hope You Enjoyed the Encryption/Decryption, GoodBye 🙏🎉")
+        
 # --- PORTFOLIO NOTE: LEGACY CODE PRESERVED FOR VERSION HISTORY ---
 # # Creating a function that takes text and shift as an input for encoding
 # def encode(new_text, new_shift):
