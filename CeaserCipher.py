@@ -11,9 +11,9 @@ direction = input("Would you like to encode or decode a message? :\n").lower()
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
-def ceaser(new_text, shift_position):
+def ceaser(new_text, shift_position, selected_direction):
     # The "Toggle": If user chooses decode, we flip the shift to negative
-    if direction == "decode":
+    if selected_direction == "decode":
         shift_position *= -1
     cipher_text = ""
     for letter in new_text:
@@ -28,7 +28,7 @@ def ceaser(new_text, shift_position):
             cipher_text += letter
     print(f"Your Cipher Code is {cipher_text}")
 
-ceaser(new_text=text, shift_position=shift)
+ceaser(new_text=text, shift_position=shift, selected_direction = direction)
 
 
 
