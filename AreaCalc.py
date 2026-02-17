@@ -1,4 +1,4 @@
-# Author: Rosy Dhakal | Project: Wall Paint Estimator (Angela Yu Day 8)
+# Author: Rosy Dhakal | Project: Wall Paint Estimator
 import math
 def paint_calc(height, width, coverage):
     # Fixed: Use the 'height' and 'width' parameters passed into the function
