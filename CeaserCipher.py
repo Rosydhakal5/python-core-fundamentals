@@ -1,12 +1,13 @@
-#Welcome to Rosy Dhakal's Caesar Cipher! Ready to encode your letters.
-# Search Keywords: Rosy Dhakal, Python Caesar Cipher, Caesar Cipher Encryption, Rosy Dhakal GitHub
-# Author: Rosy Dhakal | Project: Caesar Cipher Python Tool 
+# Welcome to Rosy Dhakal's Caesar Cipher! Ready to encode or decode your letters.
+# Search Keywords: Rosy Dhakal, Python Caesar Cipher, Caesar Cipher Encryption/Decryption, Rosy Dhakal GitHub
+# Author: Rosy Dhakal | Project: Caesar Cipher Python 
 
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+direction = input("Would you like to encode or decode a message? :\n").lower()
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
 
-# Creating a function that takes text and shift as an input 
+# Creating a function that takes text and shift as an input for encoding
 def encode(new_text, new_shift):
     cipher_text = ""
     for letter in new_text:
@@ -23,5 +24,27 @@ def encode(new_text, new_shift):
             
     print(f"Your cipher code is {cipher_text}")
 
-# Calling the function using keyword arguments
-encode(new_text=text, new_shift=shift)
+# Creating a function that takes text and shift as an input for decoding
+def decode(provided_text, shift_history):
+    cipher_decode = ""
+    for letter in provided_text:
+        # Check if character is in alphabet to avoid crashing on spaces/symbols
+        if letter in alphabet:
+            find_position = alphabet.index(letter)
+            # % 26 handles negative shifts automatically to wrap around the alphabet
+            change_position = (find_position - shift_history) % 26
+            original_position = alphabet[change_position]
+            cipher_decode += original_position
+        else:
+            # Keeps spaces or numbers as they are
+            cipher_decode += letter
+            
+    print(f"Your decoded message is {cipher_decode}")
+
+# Directing the user input to the correct function based on choice
+if direction == "encode":
+     encode(new_text=text, new_shift=shift)
+elif direction == "decode":
+     decode(provided_text=text, shift_history=shift)
+else:
+     print("Please enter a valid direction (encode/decode).")
