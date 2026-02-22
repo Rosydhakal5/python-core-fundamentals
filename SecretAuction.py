@@ -1,27 +1,59 @@
-
-# Secret Auction CLI module by Rosy Dhakal demonstrating Python loops, dictionary storage, and input-driven control flow.
+# =================================================================
+# PROJECT: SECRET AUCTION CLI
+# AUTHOR:  ROSY DHAKAL
+# PURPOSE: DEMONSTRATING PYTHON DICTIONARIES & INPUT CONTROL FLOW
+# =================================================================
 
 import os
 
 def clear():
-    os.system('cls' if os.name == 'nt' else 'clear')  # Clear terminal (Windows/Mac/Linux)
+    """Utility to clear the terminal window based on Operating System."""
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-print("Welcome to the Secret Auction")
+# --- Header Display ---
+print("****************************************")
+print("* SECRET AUCTION TERMINAL         *")
+print("****************************************\n")
 
-runAgain = True
-bids = {}  # Store bidder data
+bids = {}
+should_continue = True
 
-while runAgain:
-    name = input("What is your name?: ")
-    price = int(input("What is your bid?: $"))
-    moreBidders = input("is there any more bidders Y or N? \n: ").lower()
+# --- Data Collection Loop ---
+while should_continue:
+    name = input("Enter bidder name: ")
+    
+    # Input handling for bidding price
+    try:
+        price = int(input("Enter bidding price: $"))
+    except ValueError:
+        print("Error: Please enter a numeric value.")
+        continue
+    
+    # Store data in dictionary
+    bids[name] = price
+    
+    status = input("\nAre there any other players? (y/n): ").lower()
+    
+    if status == 'n':
+        should_continue = False
+    elif status == 'y':
+        clear()
 
-    bids["name"] = name   # Save name (overwrites each loop for now)
-    bids["price"] = price # Save bid (overwrites each loop for now)
+# --- Winner Calculation Logic ---
+highest_bid = 0 
+winner = ""
 
-    if moreBidders == 'n':
-        runAgain = False  # Exit loop
+for bidding_name in bids:
+    bid_amount = bids[bidding_name]
+    if bid_amount > highest_bid:
+        highest_bid = bid_amount
+        winner = bidding_name
 
-    clear()  # Clear screen for next bidder
-
-print(bids)  # Display final bids dictionary
+# --- Final Results Output ---
+clear()
+print("========================================")
+print("            AUCTION RESULTS             ")
+print("========================================")
+print(f"WINNER: {winner.upper()}")
+print(f"FINAL BID: ${highest_bid}")
+print("========================================\n")
