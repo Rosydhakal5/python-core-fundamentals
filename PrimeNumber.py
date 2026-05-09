@@ -1,4 +1,4 @@
-# Purpose: Practice functions with inputs and modulo-based logic. 
+# Purpose: Practice functions with inputs and modulo-based logic - updated. 
 import math
 
 def prime_checker(number):
